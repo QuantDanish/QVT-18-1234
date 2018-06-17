@@ -1,0 +1,22 @@
+a {
+  color: #00B7FF;
+}
+
+.mtb-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-box {
+  padding: 0.7rem 2rem !important;
+  border-radius: 1.5rem !important;
+  font-size: x-large !important;
+}
+
+.height-50 {
+  height: 50%;
+}
+
+.layer-0 {
+  z-index: -1;
+}
