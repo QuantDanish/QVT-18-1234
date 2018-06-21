@@ -4,11 +4,36 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const hbs = require('hbs');
+const mongoose = require('mongoose');
+const key  = require('./config/keys');
+const userService = require('./services/userService');
+
+// connecting to db.
+
+mongoose.connect(key.mongodb.url)
+  .then(() => {
+    console.log('Connecte to db..');
+    
+    
+    userService.addAdmin()
+    .then(() => {
+      console.log('Admin Added to db.');
+    }).catch((err) => {
+      console.log('fails to add admin into db.', err.message);
+    });
+    
+  }).catch((err) => {
+    console.log('Error wihile connection to db. ');
+  });
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

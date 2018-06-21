@@ -1,3 +1,5 @@
 /node_modules
-.vscode/
-/public/dist
+.vscode
+/config/keys.js
+/public/dist/
+pending task.txt

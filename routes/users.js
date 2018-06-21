@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const userService = require('../services/userService');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,10 +10,18 @@ router.get('/', function(req, res, next) {
 
 /* POST login user to their respective account */
 router.post('/login', (req, res, next)=> {
-  console.log(req.username," ,",req.passowrd);
-  res.render('home', {
-    username: req.body.username,
-    passowrd: req.body.password
+
+  userService.authenticate(req.body.username,req.body.password)
+  .then((user) => {
+    if(user){
+      return res.render('home', {
+        firstname: user.firstname,
+        lastname: user.lastname
+      });
+    }
+    res.redirect("/");
+  }).catch((err) => {
+    res.redirect("/");    
   });
 });
 
