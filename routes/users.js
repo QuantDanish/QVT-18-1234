@@ -1,28 +1,22 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const userService = require('../services/userService');
+const passport = require('../config/passportConfig');
+const routerMiddleware = require('../middleware/router');
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/:userId',
+  passport.authenticate,
+  (req, res, next) => {
+  routerMiddleware.renderWithUerName('home',req.user,req, res, next);
 });
 
 /* POST login user to their respective account */
-router.post('/login', (req, res, next)=> {
-
-  userService.authenticate(req.body.username,req.body.password)
-  .then((user) => {
-    if(user){
-      return res.render('home', {
-        firstname: user.firstname,
-        lastname: user.lastname
-      });
-    }
-    res.redirect("/");
-  }).catch((err) => {
-    res.redirect("/");    
-  });
+router.post('/login', 
+    passport.authorize ,
+    (req, res, next)=> {
+      routerMiddleware.renderWithUerName('home',{}, req, res, next);
 });
 
 module.exports = router;

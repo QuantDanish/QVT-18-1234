@@ -5,16 +5,16 @@
     </head>
     <body>
         <div class="content">
-            <div class="jumbotron col-sm-6 mx-auto">
+            <div style="height: 25%; padding: 5% 40%;">
+                <h2 >QA Forum</h3>
+            </div>
+            <div class="jumbotron col-sm-6 mx-auto" style="background-color: white">
                 <form method="POST" action="/users/login">
-                    <h1 class="display-4 text-center">QA Forum</h1>
+                    <!-- <h1 class="display-4 text-center">QA Forum</h1> -->
                     <div class="form-group">
-                        <input name="username" type="email" class="input-box form-control mtb-10" placeholder="Email Id">
+                        <input name="emailId" type="email" class="input-box form-control mtb-10" placeholder="Email Id">
                         <input name="password" type="password" class="input-box form-control mtb-10" placeholder="Password">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input">
-                            <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                        </div>
+                        
                     </div>
                     <button type="submit" class="btn btn-primary col-sm-12 input-box">Login</button>
                 </form>
