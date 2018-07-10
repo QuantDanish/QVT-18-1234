@@ -6,3 +6,10 @@ module.exports.renderWithUerName = (view, data = {},req, res, next)=> {
 
     res.render(view, data);
 }
+
+module.exports.authorize = (req, res, next)=> {
+    if(req.session.passport !== undefined && req.user !== undefined)
+        next();
+    else
+        res.redirect('/auth');
+}

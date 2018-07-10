@@ -5,11 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
 const key  = require('./config/keys');
 const userService = require('./services/userService');
+var indexRouter = require('./routes/index');
+
 
 // connecting to db.
-
 mongoose.connect(key.mongodb.url)
   .then(() => {
     console.log('Connecte to db..');
@@ -26,9 +29,6 @@ mongoose.connect(key.mongodb.url)
     console.log('Error wihile connection to db. ');
   });
 
-
-var indexRouter = require('./routes/index');
-
 var app = express();
 
 
@@ -43,8 +43,32 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: key.seession.secret,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  userService.findById(id)
+  .then((user) => {
+    done(null, user);
+  }).catch((err) => {
+    done(err);
+  });
+});
+
+
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

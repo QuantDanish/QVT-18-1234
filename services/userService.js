@@ -4,9 +4,6 @@ const adminUser = require('../config/keys').adminUser;
 
 module.exports.addAdmin = ()=> {
     return new Promise((resolve, reject) => {
-        
-        
-
         User.findOne({emailId: adminUser.emailId})
         .then((result) => {
             return result ? resolve() : reject();     
@@ -41,4 +38,8 @@ module.exports.authenticate = (emailId, password)=> {
     }).catch((err) => {reject
         return Promise.reject(err);
     });
+}
+
+module.exports.findById = (id) => {
+    return User.findById(id);
 }
