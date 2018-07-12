@@ -7,5 +7,9 @@ const auth = require('./auth');
 router.use('/user', users);
 router.use('/auth', auth);
 
+router.get('/',
+(req, res, next) => {
+    res.render('login',{ layout: null});
+});
 
 module.exports = router;

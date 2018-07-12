@@ -5,18 +5,15 @@ const routeMid = require('../middleware/router');
 // const passportConfig = require('../config/passportConfig');
 
 
-router.get('/',
-routeMid.authorize,
-(req, res, next) => {
-    res.send("Welcome to user GET"+ req.user.firstname);
+router.use(routeMid.authorize);
+
+router.get('/', (req, res, next) => {
+    res.render('home', {
+        links : [{
+            name: `${req.user.firstname } ${req.user.lastname}`,
+            address:  `/user/${req.user._id}`
+        }]
+    })
 });
-
-
-router.get('/hello',
-routeMid.authorize,
-(req, res, next) => {
-    res.send(`Hello ! ${req.user.firstname} ${req.user.lastname}`);
-});
-
 
 module.exports = router;
