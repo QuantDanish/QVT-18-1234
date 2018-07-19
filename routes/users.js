@@ -9,7 +9,14 @@ router.use(routeMid.authorize);
 
 router.get('/home', (req, res, next) => {
     res.render('home', {
-        req: req
+        user: req.user
+    });
+});
+
+router.get('/', (req, res, next) => {
+    res.render('user', {
+        user: req.user,
+        User: req.user
     });
 });
 

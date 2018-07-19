@@ -16,7 +16,9 @@
         <a class="nav-link" href="/question">Ask</a>
       </li>
       <li>
-        <a class="nav-link" href="{{req.user.id}}" >{{req.user.firstname}} {{req.user.lastname}}</a>
+        {{#with user}}
+          <a class="nav-link" href="/user" >{{firstname}} {{lastname}}</a>
+        {{/with}}
       </li>
       
     </ul>

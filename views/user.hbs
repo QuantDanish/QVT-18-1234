@@ -1,0 +1,23 @@
+<div>
+    {{#with user}}
+        <h1>Welcome {{firstname}} {{lastname}} </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width = 100px"></th>
+                    <th style="width = 100px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Email ID:</td>
+                    <td>{{emailId}}</td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td>{{username}}</td>
+                </tr>
+            </tbody> 
+        </table>
+    {{/with}}
+</div>
