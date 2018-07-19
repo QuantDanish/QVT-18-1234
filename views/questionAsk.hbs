@@ -1,0 +1,18 @@
+<div class="question w-75 m-4 p-1">
+    <h1>Ask Your Question Here.</h1>
+    <div m-1>{{> editor}}</div>
+    <button class="btn btn-primary my-2">Submit</button>
+</div>
+
+<script>
+    $(document).ready(() => {
+        let quill = new Quill('#editor-container', {
+            modules: {
+            syntax: true,
+            toolbar: '#toolbar-container'
+            },
+            placeholder: 'Ask you question Here....',
+            theme: 'snow'
+        });
+    });
+</script>

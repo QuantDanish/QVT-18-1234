@@ -7,13 +7,10 @@ const routeMid = require('../middleware/router');
 
 router.use(routeMid.authorize);
 
-router.get('/', (req, res, next) => {
+router.get('/home', (req, res, next) => {
     res.render('home', {
-        links : [{
-            name: `${req.user.firstname } ${req.user.lastname}`,
-            address:  `/user/${req.user._id}`
-        }]
-    })
+        req: req
+    });
 });
 
 module.exports = router;

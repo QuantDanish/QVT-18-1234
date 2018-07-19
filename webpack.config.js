@@ -8,6 +8,7 @@ const extractCss = new ExtractTextPlugin({
 });
 
 const config = {
+    mode: 'production',
     entry: './public/javascripts/main.js',
 
     output: {

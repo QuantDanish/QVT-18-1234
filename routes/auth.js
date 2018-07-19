@@ -7,12 +7,10 @@ const passportConfig = require('../config/passportConfig');
 
 router.post('/',
 passport.authenticate('local', {
-    successRedirect: '/user',
+    successRedirect: '/user/home',
     failureRedirect: '/',  
 }),
-(req, res, next) => {
-    res.send("logged in");
-}
+(req, res, next) => {}
 );
 
 module.exports = router;
